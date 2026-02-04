@@ -1,198 +1,214 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Open at Your Own Risk</title>
-  <meta name="description" content="A playful, dramatic gate page with reveal." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Open at Your Own Risk 💌</title>
+  <meta name="description" content="A little surprise for my Valentine. Open at your own risk!">
+  <meta property="og:title" content="A little surprise for you 💘">
+  <meta property="og:description" content="Open at your own risk!">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1200&auto=format&fit=crop" />
+  <meta name="theme-color" content="#ff4d6d">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b0f14;
-      --card: #111827;
-      --text: #e5e7eb;
-      --accent: #ef4444; /* red */
-      --accent-2: #22c55e; /* green */
+    :root{
+      --bg: #0f0f14;
+      --card: #15151c;
+      --accent: #ff4d6d;
+      --accent-2:#ffa6b3;
+      --text: #f7f7fb;
+      --muted:#b9bbcf;
+      --glow: 0 0 30px rgba(255,77,109,0.45), 0 0 60px rgba(255,77,109,0.2);
     }
-    * { box-sizing: border-box }
-    html, body { height: 100%; margin: 0; }
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji";
-      color: var(--text);
-      background: radial-gradient(1200px 1200px at 50% -10%, #1f2937 0%, var(--bg) 45%, #000 100%);
-      display: grid; place-items: center;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1200px 600px at 80% -10%,rgba(255,77,109,0.18),transparent 60%),
+        radial-gradient(1000px 500px at -10% 110%,rgba(154,103,255,0.18),transparent 60%),
+        var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
     }
-    .wrap {
-      width: min(92vw, 720px);
-      background: linear-gradient(180deg, #0f172a 0%, #0b0f14 100%);
-      border: 1px solid #1f2937;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-      padding: 28px;
-      position: relative;
-      overflow: hidden;
+    .scene{
+      min-height:100dvh; display:flex; align-items:center; justify-content:center; padding:22px;
+      position:relative; isolation:isolate;
     }
-    .glow {
-      position: absolute; inset: -20%; filter: blur(40px);
-      background: conic-gradient(from 180deg, #ef444422, #22c55e22, #3b82f622, #ef444422);
-      animation: spin 10s linear infinite;
-      z-index: 0;
+    .card{
+      width:min(680px, 92vw);
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(8px);
+      border-radius:22px; padding:28px;
+      position:relative; overflow:hidden;
     }
-    @keyframes spin { to { transform: rotate(1turn) } }
-
-    .content { position: relative; z-index: 1; text-align: center; }
-    h1 {
-      margin: 10px 0 0;
-      font-size: clamp(28px, 4.5vw, 40px);
-      letter-spacing: .4px;
+    .card::before{
+      content:""; position:absolute; inset:-2px;
+      background:radial-gradient(650px 120px at 50% -20%, rgba(255,77,109,0.35), transparent 60%);
+      z-index:-1;
     }
-    p.muted { color: #9ca3af; margin: 8px 0 24px; }
-    .warning {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 10px 14px; border-radius: 10px;
-      background: #ef44440f; color: #fecaca; border: 1px solid #7f1d1d;
-      font-weight: 600; text-transform: uppercase; letter-spacing: .4px;
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;
     }
-    .cta {
-      margin-top: 22px;
-      display: inline-grid; place-items: center;
-      padding: 16px 22px; font-size: 18px; font-weight: 700;
-      border-radius: 12px; border: 1px solid #334155;
-      background: linear-gradient(180deg, #16a34a, #15803d);
-      color: white; cursor: pointer; text-decoration: none;
-      transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
-      box-shadow: 0 10px 30px rgba(34,197,94,.25);
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:0.3px;
     }
-    .cta:hover { filter: brightness(1.05) }
-    .cta:active { transform: translateY(1px) }
-    .cta.shake { animation: shake .4s }
-    @keyframes shake {
-      15% { transform: translateX(-3px) }
-      35% { transform: translateX(4px) }
-      55% { transform: translateX(-4px) }
-      75% { transform: translateX(2px) }
-      100% { transform: translateX(0) }
+    .heart-logo{
+      width:28px; height:28px; display:inline-grid; place-items:center;
+      border-radius:50%; background:rgba(255,77,109,0.14); color:var(--accent);
+      box-shadow:var(--glow);
     }
-
-    .reveal {
-      margin-top: 22px; padding: 16px; border-radius: 12px;
-      background: #0b1220; border: 1px solid #1f2a44;
-      display: none; text-align: left;
+    .muted{ color:var(--muted); font-size:13px }
+    .title{
+      font-family:Pacifico, cursive;
+      font-size: clamp(28px, 3.6vw, 44px);
+      line-height:1.15; margin:12px 0 6px; letter-spacing:0.2px;
+      text-shadow: var(--glow);
     }
-    .reveal.visible { display: block; }
-    .footer {
-      margin-top: 18px; font-size: 12px; color: #6b7280;
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;
     }
-    .timer { font-weight: 700; color: #eab308 }
+    button{
+      background: var(--accent);
+      border: none; color:#fff; font-weight:700; padding:12px 20px; border-radius:999px;
+      cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .2s ease;
+      box-shadow: 0 10px 24px rgba(255,77,109,0.25);
+      will-change: transform;
+    }
+    button:hover{ transform: translateY(-2px); box-shadow: 0 14px 30px rgba(255,77,109,0.33) }
+    .btn-outline{
+      background: transparent; color: var(--accent);
+      border:1.5px solid rgba(255,77,109,0.6);
+      box-shadow:none;
+    }
+    .gate, .main, .reveal{ display:none; }
+    .show{ display:block; }
+    .center{ text-align:center }
+    .type{
+      margin: 10px 0 4px; min-height: 2.2em;
+      font-size: clamp(16px, 2.2vw, 20px); color:var(--muted);
+    }
+    .yesno{ display:flex; gap:12px; justify-content:center; margin-top:16px; position:relative; height:46px }
+    #noBtn{ position:absolute; left:50%; transform:translateX(-50%) }
+    .footer{
+      margin-top:22px; font-size:12px; color:var(--muted);
+      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    }
+    .chip{
+      padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08)
+    }
+    .pulse{
+      animation:pulse 1.4s infinite;
+    }
+    @keyframes pulse{
+      0%,100%{ transform:scale(1) }
+      50%{ transform:scale(1.06) }
+    }
+    .float-hearts{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
+    .float-hearts span{
+      position:absolute; animation:floatUp linear forwards; opacity:0.8; filter:drop-shadow(0 6px 14px rgba(255,77,109,0.3))
+    }
+    @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity:0 } }
+    canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:2 }
+    .music{
+      position: fixed; right:16px; bottom:16px; z-index:3;
+      background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.12);
+      color:#fff; padding:10px 14px; border-radius:999px; backdrop-filter: blur(6px);
+    }
+    .reveal-card{
+      margin-top:16px; overflow:hidden; border-radius:18px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+    }
+    .reveal-card img{
+      width:100%; display:block; max-height:360px; object-fit:cover;
+    }
+    .reveal h2{
+      margin:14px 16px 6px; font-size: clamp(22px, 2.8vw, 28px);
+    }
+    .reveal p{
+      margin:0 16px 18px; color:var(--muted)
+    }
+    .small{ font-size:12px; color:var(--muted) }
+    a { color: var(--accent-2); text-decoration: none }
+    .note{ font-size:12px; color: var(--muted); margin-top:10px }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="glow" aria-hidden="true"></div>
-    <div class="content">
-      <div class="warning">⚠️ Open at your own risk</div>
-      <h1>Proceed if you dare</h1>
-      <p class="muted">This page may contain loud sounds, flashing effects, or surprises. Viewer discretion advised.</p>
 
-      <button id="openBtn" class="cta">I Understand—Open It</button>
+  <!-- Floating hearts background -->
+  <div class="float-hearts" id="floatHearts" aria-hidden="true"></div>
+  <canvas id="confetti"></canvas>
 
-      <div id="reveal" class="reveal" role="region" aria-live="polite">
-        <h2>Surprise! 🎉</h2>
-        <p>You made it past the gate. Replace this section with your actual content, embed, or redirect.</p>
-        <ul>
-          <li>To **redirect** instead of showing this box, set <code>REDIRECT_URL</code> below.</li>
-          <li>To enable a **countdown**, set <code>COUNTDOWN_SECONDS</code>.</li>
-          <li>To add **confetti**, toggle <code>CONFETTI</code> to true.</li>
-        </ul>
+  <main class="scene">
+
+    <section class="card gate show" id="gate">
+      <div class="topbar">
+        <div class="brand">
+          <span class="heart-logo">💝</span> Open at Your Own Risk
+        </div>
+        <span class="chip">for <strong>VIDU</strong></span>
       </div>
 
-      <div class="footer">© <span id="y"></span> Your Name — Be nice. No malicious content.</div>
-    </div>
-  </div>
+      <h1 class="title center">Hey, <span class="pulse">VIDU</span>…</h1>
+      <p class="center muted">I made a tiny something for you. It *might* cause butterflies 🦋</p>
 
-  <audio id="beep" preload="auto">
-    <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQgAAAAA" type="audio/wav">
-  </audio>
+      <div class="cta" style="justify-content:center">
+        <button id="openBtn">Open it</button>
+        <button class="btn-outline" id="maybeLater">Maybe later</button>
+      </div>
 
-  <script>
-    // --- Configuration ---
-    const COUNTDOWN_SECONDS = 0;          // e.g., 3 for a 3-second suspense
-    const REDIRECT_URL = "";              // e.g., "https://example.com/final"
-    const CONFETTI = true;                // toggle confetti effect
+      <p class="note center">P.S. Sound is optional &mdash; you can toggle it anytime.</p>
 
-    // --- Helpers ---
-    const byId = (id) => document.getElementById(id);
-    const openBtn = byId('openBtn');
-    const reveal = byId('reveal');
-    const beep = byId('beep');
-    byId('y').textContent = new Date().getFullYear();
+      <div class="footer">
+        <span class="muted">Handcrafted with ❤️ by Sagar</span>
+        <span class="chip">Feb 14</span>
+      </div>
+    </section>
 
-    function simpleConfetti() {
-      // Lightweight confetti without external libs
-      const total = 120;
-      for (let i = 0; i < total; i++) {
-        const el = document.createElement('i');
-        const size = Math.random() * 8 + 4;
-        const colors = ['#ef4444','#22c55e','#3b82f6','#eab308','#a855f7','#f97316'];
-        el.style.position = 'fixed';
-        el.style.left = (Math.random() * 100) + 'vw';
-        el.style.top = '-10px';
-        el.style.width = size + 'px';
-        el.style.height = size + 'px';
-        el.style.background = colors[Math.floor(Math.random()*colors.length)];
-        el.style.opacity = .9;
-        el.style.transform = `rotate(${Math.random()*360}deg)`;
-        el.style.willChange = 'transform, top';
-        el.style.zIndex = 9999;
-        document.body.appendChild(el);
-        const fall = () => {
-          const duration = 2000 + Math.random() * 2000;
-          const dx = (Math.random() * 2 - 1) * 200;
-          el.animate([
-            { transform: `translate(0,0) rotate(0deg)` , offset: 0 },
-            { transform: `translate(${dx/2}px, 50vh) rotate(180deg)`, offset: .5 },
-            { transform: `translate(${dx}px, 100vh) rotate(360deg)` , offset: 1 }
-          ], { duration, easing: 'cubic-bezier(.2,.8,.2,1)' });
-          setTimeout(() => el.remove(), duration);
-        };
-        setTimeout(fall, Math.random() * 300);
-      }
-    }
+    <section class="card main" id="main">
+      <div class="topbar">
+        <div class="brand">
+          <span class="heart-logo">💘</span> Just a quick question
+        </div>
+        <span class="muted">no pressure, maybe a little 😇</span>
+      </div>
 
-    function countdown(sec) {
-      return new Promise((resolve) => {
-        if (!sec) return resolve();
-        const span = document.createElement('span');
-        span.className = 'timer';
-        span.textContent = `Revealing in ${sec}…`;
-        openBtn.insertAdjacentElement('afterend', span);
-        const int = setInterval(() => {
-          sec--;
-          span.textContent = `Revealing in ${sec}…`;
-          if (sec <= 0) {
-            clearInterval(int);
-            span.remove();
-            resolve();
-          }
-        }, 1000);
-      });
-    }
+      <div class="center">
+        <div class="type" id="typewriter"></div>
+        <h2 class="title" style="margin-top:2px">Will you be my Valentine?</h2>
 
-    openBtn.addEventListener('click', async () => {
-      // Haptic + beep + shake
-      openBtn.classList.add('shake');
-      try { navigator.vibrate && navigator.vibrate(40); } catch {}
-      try { beep.currentTime = 0; beep.play().catch(()=>{}); } catch {}
+        <div class="yesno">
+          <button id="yesBtn">Yes 💗</button>
+          <button id="noBtn" class="btn-outline">No 🙈</button>
+        </div>
 
-      await countdown(COUNTDOWN_SECONDS);
+        <p class="note">If the “No” button runs away… that’s just destiny. 🏃‍♀️💨</p>
+      </div>
 
-      if (REDIRECT_URL) {
-        window.location.href = REDIRECT_URL;
-        return;
-      }
+      <div class="footer">
+        <span class="muted">Consent > everything ✨</span>
+        <span class="chip">#butterflies</span>
+      </div>
+    </section>
 
-      reveal.classList.add('visible');
-      if (CONFETTI) simpleConfetti();
-    });
-  </script>
-</body>
-</html>
+    <section class="card reveal" id="reveal">
+      <div class="topbar">
+        <div class="brand">
+          <span class="heart-logo">💞</span> Yay!
+        </div>
+        <span class="chip">you said yes</span>
+      </div>
+
+      <div class="reveal-card">
+        <img src="your-photo.jpg" alt="Us, or something pretty you like">
+        <h2 class="title" style="margin:16px">To many little adventures with you 💫</h2>
+        <p>Thank you for making my world brighter. Dinner/ice cream/date soon? My treat. – <strong>Sagar</strong></p>
+      </div>
+
+      <div class="cta" style="justify-content:center; margin-top:18px">
+        <a class="btn-outline" href="https://wa.me/?text=Yes!%20I%20accept%20your%20Valentine%20invite%20%F0%9F%92%97" target="_blank" rel="noopener">Reply on WhatsApp</a>
