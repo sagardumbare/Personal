@@ -4,139 +4,166 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>Open at Your Own Risk 💌</title>
-  <meta name="description" content="A little surprise for my Valentine. Open at your own risk!">
-  <meta property="og:title" content="A little surprise for you 💘">
-  <meta property="og:description" content="Open at your own risk!">
+  <meta name="description" content="A tiny surprise for you. Open at your own risk!" />
+  <meta name="theme-color" content="#ff4d6d" />
+  <meta property="og:title" content="A little surprise for you 💘" />
+  <meta property="og:description" content="Open at your own risk!" />
   <meta property="og:image" content="https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1200&auto=format&fit=crop" />
-  <meta name="theme-color" content="#ff4d6d">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" />
+
+  <!-- Fonts (kept declarative to avoid external requests when offline)
+  https://fonts.googleapis.com
+  https://fonts.gstatic.com
+  https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap
+ -->
+
   <style>
     :root{
       --bg: #0f0f14;
-      --card: #15151c;
+      --gradient-1: rgba(255,77,109,0.18);
+      --gradient-2: rgba(154,103,255,0.18);
       --accent: #ff4d6d;
       --accent-2:#ffa6b3;
       --text: #f7f7fb;
       --muted:#b9bbcf;
+      --border: rgba(255,255,255,0.08);
+      --glassTop: rgba(255,255,255,0.04);
+      --glassBottom: rgba(255,255,255,0.02);
       --glow: 0 0 30px rgba(255,77,109,0.45), 0 0 60px rgba(255,77,109,0.2);
+      --radius: 26px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
+
+    * { box-sizing: border-box }
+    html, body { height: 100% }
     body{
       margin:0;
-      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:
-        radial-gradient(1200px 600px at 80% -10%,rgba(255,77,109,0.18),transparent 60%),
-        radial-gradient(1000px 500px at -10% 110%,rgba(154,103,255,0.18),transparent 60%),
-        var(--bg);
       color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, var(--gradient-1), transparent 60%),
+        radial-gradient(1000px 500px at -10% 110%, var(--gradient-2), transparent 60%),
+        var(--bg);
+      font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       overflow-x:hidden;
+      color-scheme: dark;
     }
+
     .scene{
-      min-height:100dvh; display:flex; align-items:center; justify-content:center; padding:22px;
+      min-height:100dvh;
+      display:flex; align-items:center; justify-content:center;
+      padding: 32px;
       position:relative; isolation:isolate;
     }
+
+    /* BIGGER CARD  */
     .card{
-      width:min(680px, 92vw);
-      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border:1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-      backdrop-filter: blur(8px);
-      border-radius:22px; padding:28px;
-      position:relative; overflow:hidden;
+      width:min(1320px, 96vw);
+      background:linear-gradient(180deg, var(--glassTop), var(--glassBottom));
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 16px 56px rgba(0,0,0,0.5);
+      padding: 40px 36px;
+      position: relative; overflow: hidden;
     }
     .card::before{
       content:""; position:absolute; inset:-2px;
-      background:radial-gradient(650px 120px at 50% -20%, rgba(255,77,109,0.35), transparent 60%);
+      background: radial-gradient(1200px 170px at 50% -18%, rgba(255,77,109,0.34), transparent 60%);
       z-index:-1;
     }
+
     .topbar{
-      display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:0.3px;
-    }
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:0.3px; }
     .heart-logo{
-      width:28px; height:28px; display:inline-grid; place-items:center;
+      width:32px; height:32px; display:grid; place-items:center;
       border-radius:50%; background:rgba(255,77,109,0.14); color:var(--accent);
       box-shadow:var(--glow);
     }
+    .chip{ padding:8px 12px; border-radius:999px; background:rgba(255,255,255,0.06); border:1px solid var(--border) }
     .muted{ color:var(--muted); font-size:13px }
+
     .title{
       font-family:Pacifico, cursive;
-      font-size: clamp(28px, 3.6vw, 44px);
-      line-height:1.15; margin:12px 0 6px; letter-spacing:0.2px;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height:1.12; margin:14px 0 6px; letter-spacing:0.2px;
       text-shadow: var(--glow);
     }
-    .cta{
-      display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;
-    }
+    .center{ text-align:center }
+
+    .cta{ display:flex; gap:16px; flex-wrap:wrap; margin-top:20px }
+    .cta.center{ justify-content:center }
+
     button{
       background: var(--accent);
-      border: none; color:#fff; font-weight:700; padding:12px 20px; border-radius:999px;
-      cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .2s ease;
-      box-shadow: 0 10px 24px rgba(255,77,109,0.25);
+      border: none; color:#fff; font-weight:700;
+      padding:14px 22px; border-radius:999px;
+      cursor:pointer; transition:transform .12s ease, box-shadow .12s ease, background .2s ease, opacity .2s ease;
+      box-shadow: 0 12px 26px rgba(255,77,109,0.28);
       will-change: transform;
+      font-size: 16px;
     }
-    button:hover{ transform: translateY(-2px); box-shadow: 0 14px 30px rgba(255,77,109,0.33) }
+    button:hover{ transform: translateY(-2px); box-shadow: 0 16px 34px rgba(255,77,109,0.34) }
     .btn-outline{
       background: transparent; color: var(--accent);
       border:1.5px solid rgba(255,77,109,0.6);
       box-shadow:none;
     }
-    .gate, .main, .reveal{ display:none; }
-    .show{ display:block; }
-    .center{ text-align:center }
+
+    .gate, .main, .reveal{ display:none }
+    .show{ display:block }
+
     .type{
-      margin: 10px 0 4px; min-height: 2.2em;
-      font-size: clamp(16px, 2.2vw, 20px); color:var(--muted);
+      margin: 12px 0 6px; min-height: 2.4em;
+      font-size: clamp(18px, 2.2vw, 22px); color:var(--muted);
     }
-    .yesno{ display:flex; gap:12px; justify-content:center; margin-top:16px; position:relative; height:46px }
-    #noBtn{ position:absolute; left:50%; transform:translateX(-50%) }
-    .footer{
-      margin-top:22px; font-size:12px; color:var(--muted);
-      display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;
+
+    /* Initial row layout so buttons never overlap */
+    .yesno{
+      display:flex; gap:16px; justify-content:center; align-items:center;
+      margin-top:20px; min-height:50px; position:relative;
     }
-    .chip{
-      padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08)
-    }
-    .pulse{
-      animation:pulse 1.4s infinite;
-    }
-    @keyframes pulse{
-      0%,100%{ transform:scale(1) }
-      50%{ transform:scale(1.06) }
-    }
+
+    .note{ font-size:12px; color: var(--muted); margin-top:10px }
+    .small{ font-size:12px; color: var(--muted) }
+    a { color: var(--accent-2); text-decoration: none }
+
+    /* Floating hearts */
     .float-hearts{ position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden; }
     .float-hearts span{
-      position:absolute; animation:floatUp linear forwards; opacity:0.8; filter:drop-shadow(0 6px 14px rgba(255,77,109,0.3))
+      position:absolute; animation:floatUp linear forwards; opacity:0.85; filter:drop-shadow(0 6px 14px rgba(255,77,109,0.3))
     }
     @keyframes floatUp { to { transform: translateY(-110vh) rotate(360deg); opacity:0 } }
+
+    /* Confetti */
     canvas#confetti{ position:fixed; inset:0; pointer-events:none; z-index:2 }
+
+    /* Music toggle */
     .music{
       position: fixed; right:16px; bottom:16px; z-index:3;
       background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.12);
       color:#fff; padding:10px 14px; border-radius:999px; backdrop-filter: blur(6px);
     }
+
     .reveal-card{
-      margin-top:16px; overflow:hidden; border-radius:18px;
-      border:1px solid rgba(255,255,255,0.08);
+      margin-top:18px; overflow:hidden; border-radius:18px;
+      border:1px solid var(--border);
       background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
     }
     .reveal-card img{
-      width:100%; display:block; max-height:360px; object-fit:cover;
+      width:100%; display:block; max-height:420px; object-fit:cover;
     }
-    .reveal h2{
-      margin:14px 16px 6px; font-size: clamp(22px, 2.8vw, 28px);
+
+    .pulse{ animation:pulse 1.4s infinite }
+    @keyframes pulse{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.06) } }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
     }
-    .reveal p{
-      margin:0 16px 18px; color:var(--muted)
-    }
-    .small{ font-size:12px; color:var(--muted) }
-    a { color: var(--accent-2); text-decoration: none }
-    .note{ font-size:12px; color: var(--muted); margin-top:10px }
   </style>
+  
 </head>
 <body>
 
@@ -146,69 +173,348 @@
 
   <main class="scene">
 
+    <!-- Gate -->
     <section class="card gate show" id="gate">
       <div class="topbar">
         <div class="brand">
           <span class="heart-logo">💝</span> Open at Your Own Risk
         </div>
-        <span class="chip">for <strong>VIDU</strong></span>
+        <span class="chip">Only for <strong id="valName">Vidu</strong></span>
       </div>
 
-      <h1 class="title center">Hey, <span class="pulse">VIDU</span>…</h1>
-      <p class="center muted">I made a tiny something for you. It *might* cause butterflies 🦋</p>
+      <h1 class="title center">Hey, <span class="pulse" id="valName2">Vidu</span>…</h1>
+      <h2 class="center muted"><br>I made a tiny something for you. It <em>might</em> cause butterflies 🦋</h2>
 
-      <div class="cta" style="justify-content:center">
-        <button id="openBtn">Open it</button>
+      <div class="cta center">
+        <button id="openBtn" aria-controls="main">Open it</button>
         <button class="btn-outline" id="maybeLater">Maybe later</button>
       </div>
 
-      <p class="note center">P.S. Sound is optional &mdash; you can toggle it anytime.</p>
+      <p class="note center"><strong><br>P.S.: Toggle it anytime.</strong></p>
 
-      <div class="footer">
-        <span class="muted">Handcrafted with ❤️ by Sagar</span>
-        <span class="chip">Feb 14</span>
+      <div class="topbar" style="margin-top:8px">
+        <span class="muted">Handcrafted with ❤️ by <strong id="yourName1">Sagar</strong></span>
+        <span class="chip" id="todayTag">Feb 14</span>
       </div>
     </section>
 
-    <section class="card main" id="main">
+    <!-- Main -->
+    <section class="card main" id="main" aria-live="polite" aria-atomic="true">
       <div class="topbar">
         <div class="brand">
           <span class="heart-logo">💘</span> Just a quick question
         </div>
-        <span class="muted">no pressure, maybe a little 😇</span>
+        <span class="muted"></span>No pressure, maybe a little 😇
       </div>
 
       <div class="center">
         <div class="type" id="typewriter"></div>
-        <h2 class="title" style="margin-top:2px">Will you be my Valentine?</h2>
+        <h2 class="title" style="margin-top:4px">Will you be my Valentine?</h2>
 
-        <div class="yesno">
-          <button id="yesBtn">Yes 💗</button>
+        <!-- Side-by-side initial layout (no overlap) -->
+        <div class="yesno" id="yesnoRow">
+          <button id="yesBtn" aria-controls="reveal">Yes 💗</button>
           <button id="noBtn" class="btn-outline">No 🙈</button>
         </div>
 
-        <p class="note">If the “No” button runs away… that’s just destiny. 🏃‍♀️💨</p>
+        <p class="note"><strong><br>If the “No” button runs away… that’s just destiny. 🏃‍♀️💨</strong></p>
       </div>
 
-      <div class="footer">
-        <span class="muted">Consent > everything ✨</span>
-        <span class="chip">#butterflies</span>
+      <div class="topbar" style="margin-top:10px">
+        <span class="muted"><strong>Consent &gt; everything ✨</strong></span>
+        <span class="chip">💗 Love you foreveer</span>
       </div>
     </section>
 
+    <!-- Reveal -->
     <section class="card reveal" id="reveal">
       <div class="topbar">
         <div class="brand">
-          <span class="heart-logo">💞</span> Yay!
+          <span class="heart-logo">💞</span>You said YES
         </div>
-        <span class="chip">you said yes</span>
+        <span class="chip"></span>💞 Yay!
       </div>
 
       <div class="reveal-card">
-        <img src="your-photo.jpg" alt="Us, or something pretty you like">
+        <!-- Replace with your image URL -->
+        <img id="photo" src="" alt="" />
         <h2 class="title" style="margin:16px">To many little adventures with you 💫</h2>
-        <p>Thank you for making my world brighter. Dinner/ice cream/date soon? My treat. – <strong>Sagar</strong></p>
+        <p style="margin: 0 16px 18px; color: var(--muted);">
+          <br>Thank you for making my world brighter.<br><br>Dinner / ice cream / date soon? My treat.
+          – <strong id="yourName2">Sagar</strong>
+        </p>
       </div>
 
-      <div class="cta" style="justify-content:center; margin-top:18px">
-        <a class="btn-outline" href="https://wa.me/?text=Yes!%20I%20accept%20your%20Valentine%20invite%20%F0%9F%92%97" target="_blank" rel="noopener">Reply on WhatsApp</a>
+	  <div class="cta center" style="margin-top:18px">
+		<button id="replay">Replay ✨</button>
+	  </div>
+
+    </section>
+
+  </main>
+
+  <!-- Music -->
+  <button class="music" id="musicBtn" aria-pressed="false">🔈 Music: Off</button>
+  <audio id="bgm" loop preload="auto"></audio>
+
+  <script>
+    // ------------------- CONFIG -------------------
+    const CONFIG = {
+      VALENTINE_NAME: "Vidu",
+      YOUR_NAME: "Sagar",
+      PHOTO_URL: "https://drive.google.com/uc?id=1ihlqCLXTXWfF5KQ9CE5qs-fL86KfDztj",   // e.g., "https://…/photo.jpg"
+      MUSIC_URL: "",   // e.g., "https://…/bgm.mp3"
+      WHATSAPP_TEXT: "Yes! I accept your Valentine invite 💗",
+      TYPE_LINES: [
+        "I’ve been meaning to ask you something……",
+        "Tiny question. Huge butterflies.",
+        "Ready? 👇"
+      ],
+      NO_AUTO_FLOAT_INTERVAL_MS: 160000,  // periodic hop while on question screen
+      NO_PADDING: 10                    // viewport padding so it never touches edges
+    };
+
+    // -------- Populate dynamic content --------
+    document.getElementById('valName').textContent = CONFIG.VALENTINE_NAME;
+    document.getElementById('valName2').textContent = CONFIG.VALENTINE_NAME;
+    document.getElementById('yourName1').textContent = CONFIG.YOUR_NAME;
+    document.getElementById('yourName2').textContent = CONFIG.YOUR_NAME;
+
+    const photo = document.getElementById('photo');
+    if (CONFIG.PHOTO_URL) photo.src = CONFIG.PHOTO_URL;
+
+    const bgm = document.getElementById('bgm');
+    if (CONFIG.MUSIC_URL) bgm.src = CONFIG.MUSIC_URL;
+
+    // Date label
+    const d = new Date();
+    document.getElementById('todayTag').textContent =
+      d.toLocaleString(undefined, { month: 'short', day: '2-digit' });
+
+    // -------- Utilities --------
+    const $ = s => document.querySelector(s);
+    const rand = (min,max)=> Math.random()*(max-min)+min;
+    function gentlyVibrate(ms=50){ if (navigator.vibrate){ try{ navigator.vibrate(ms) }catch(e){} } }
+
+    // -------- View switching --------
+    const gate = $('#gate'), main = $('#main'), reveal = $('#reveal');
+    $('#openBtn').addEventListener('click', ()=>{
+      gate.classList.remove('show');
+      main.classList.add('show');
+      typeSequence(CONFIG.TYPE_LINES);
+      popHearts(20);
+      gentlyVibrate(120);
+      safePlay();
+    });
+    $('#maybeLater').addEventListener('click', ()=>{
+      popHearts(20);
+      alert("Okay! It’ll be here when you’re ready 💖");
+    });
+
+    // -------- Typewriter --------
+    const typeEl = $('#typewriter');
+    async function type(text, speed=60){
+      typeEl.innerHTML = '';
+      for(let i=0;i<text.length;i++){
+        typeEl.innerHTML += text[i];
+        await new Promise(r=>setTimeout(r, speed));
+      }
+    }
+    async function typeSequence(lines){
+      for(const line of lines){
+        await type(line);
+        await new Promise(r=>setTimeout(r, 650));
+      }
+    }
+
+    // -------- No button behavior (row initially -> free float on page) --------
+    const noBtn = $('#noBtn');
+    const yesBtn = $('#yesBtn');
+    const yesnoRow = $('#yesnoRow');
+
+    let noIsFree = false;
+    let autoFloatTimer = null;
+
+    function clamp(value, min, max){ return Math.min(max, Math.max(min, value)); }
+
+    function moveNoAnywhere(){
+      // Ensure the button is measurable
+      const w = noBtn.offsetWidth || 96;
+      const h = noBtn.offsetHeight || 44;
+
+      const pad = CONFIG.NO_PADDING;
+      // Keep away from the music toggle (approx 48x48 at bottom-right)
+      const avoidRight = 120, avoidBottom = 100;
+
+      const maxX = Math.max(0, window.innerWidth - w - pad);
+      const maxY = Math.max(0, window.innerHeight - h - pad);
+
+      let x = rand(pad, maxX);
+      let y = rand(pad, maxY);
+
+      // Nudge away from the music toggle hot corner
+      x = (x > window.innerWidth - avoidRight) ? window.innerWidth - avoidRight - w : x;
+      y = (y > window.innerHeight - avoidBottom) ? window.innerHeight - avoidBottom - h : y;
+
+      x = clamp(x, pad, maxX);
+      y = clamp(y, pad, maxY);
+
+      // Use left/top to place it; reset transform so it never goes visually “missing”
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top  = `${y}px`;
+    }
+
+    function makeNoFreeMode(){
+      if (noIsFree) return;
+      noIsFree = true;
+
+      // Detach from row, move to body, and make it fixed so it can roam anywhere
+      const { left, top, height } = yesBtn.getBoundingClientRect();
+      document.body.appendChild(noBtn);
+      Object.assign(noBtn.style, {
+        position: 'fixed',
+        zIndex: 5,                 // above UI, below floating hearts/confetti is fine
+        margin: '0',               // avoid layout shifts
+      });
+
+      // Place it initially near the old row (just to feel natural), then hop
+      noBtn.style.left = `${left + 120}px`;
+      noBtn.style.top  = `${top + height + 12}px`;
+
+      // First hop immediately, then keep hopping
+      moveNoAnywhere();
+      if (autoFloatTimer) clearInterval(autoFloatTimer);
+      autoFloatTimer = setInterval(moveNoAnywhere, CONFIG.NO_AUTO_FLOAT_INTERVAL_MS);
+
+      // Keep it visible no matter what
+      noBtn.style.opacity = '1';
+      noBtn.style.display = '';
+      noBtn.setAttribute('aria-live','polite');
+    }
+
+    // Enter free mode the first time the user targets it
+    noBtn.addEventListener('mouseenter', ()=>{ makeNoFreeMode(); gentlyVibrate(60); moveNoAnywhere(); });
+    noBtn.addEventListener('touchstart', ()=>{ makeNoFreeMode(); moveNoAnywhere(); }, {passive:true});
+    noBtn.addEventListener('focus', ()=>{ makeNoFreeMode(); moveNoAnywhere(); });
+    noBtn.addEventListener('click', (e)=>{ e.preventDefault(); makeNoFreeMode(); moveNoAnywhere(); });
+
+    // Keep it within the viewport on resize/rotation
+    window.addEventListener('resize', ()=>{ if(noIsFree) moveNoAnywhere(); }, { passive:true });
+
+    // -------- Yes -> celebrate & reveal --------
+    yesBtn.addEventListener('click', ()=>{
+      celebrate();
+      main.classList.remove('show');
+      reveal.classList.add('show');
+      // Pause roaming while on reveal (but do NOT hide it)
+      if (autoFloatTimer){ clearInterval(autoFloatTimer); autoFloatTimer = null; }
+    });
+
+    // -------- Replay (restores question; No keeps roaming if it was already free) --------
+    $('#replay').addEventListener('click', ()=>{
+      reveal.classList.remove('show');
+      main.classList.add('show');
+      typeSequence([
+        "Okay, one more time…",
+        "Because I love seeing you smile 😊",
+        "Ready again? 👇"
+      ]);
+      popHearts(20);
+      // Resume roaming if in free mode
+      if (noIsFree && !autoFloatTimer){
+        autoFloatTimer = setInterval(moveNoAnywhere, CONFIG.NO_AUTO_FLOAT_INTERVAL_MS);
+      }
+    });
+
+    // -------- Floating hearts --------
+    const heartsRoot = $('#floatHearts');
+    const heartEmoji = ['💗','💖','💝','💞','💓','💕'];
+    function popHearts(n=8){
+      for(let i=0;i<n;i++){
+        const span = document.createElement('span');
+        span.textContent = heartEmoji[Math.floor(rand(0, heartEmoji.length))];
+        span.style.left = rand(0,100)+'vw';
+        span.style.bottom = '-10vh';
+        span.style.fontSize = rand(18,38)+'px';
+        span.style.animationDuration = rand(3.2,5.6)+'s';
+        heartsRoot.appendChild(span);
+        setTimeout(()=>span.remove(), 6000);
+      }
+    }
+
+    // -------- Confetti --------
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let confettiPieces = [];
+
+    function resizeCanvas(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+    window.addEventListener('resize', resizeCanvas, { passive:true });
+    resizeCanvas();
+
+    function createConfetti(){
+      const colors = ['#ff4d6d','#ffa6b3','#ffd166','#9a67ff','#7bdff2','#caffbf'];
+      for(let i=0;i<220;i++){
+        confettiPieces.push({
+          x: rand(0, canvas.width),
+          y: rand(-canvas.height, 0),
+          r: rand(3,6),
+          c: colors[Math.floor(rand(0, colors.length))],
+          s: rand(1.2, 3.2),
+          a: rand(0.5, 1),
+          t: rand(0, 2*Math.PI)
+        });
+      }
+    }
+    function drawConfetti(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      confettiPieces.forEach(p=>{
+        p.y += p.s;
+        p.x += Math.sin((p.y + p.t)/30);
+        ctx.globalAlpha = p.a;
+        ctx.fillStyle = p.c;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+      });
+      confettiPieces = confettiPieces.filter(p => p.y < canvas.height + 8);
+      requestAnimationFrame(drawConfetti);
+    }
+    drawConfetti();
+
+    function celebrate(){
+      confettiPieces = [];
+      createConfetti();
+      popHearts(18);
+      gentlyVibrate(150);
+    }
+
+    // -------- Music toggle / safe autoplay --------
+    const musicBtn = document.getElementById('musicBtn');
+    async function safePlay(){
+      if(!bgm.src) return;
+      try{
+        await bgm.play();
+        musicBtn.textContent = '🔊 Music: On';
+        musicBtn.setAttribute('aria-pressed','true');
+      }catch(e){ /* autoplay may be blocked until further interaction */ }
+    }
+    musicBtn.addEventListener('click', async ()=>{
+      if(!bgm.src){ alert('No music set yet 🙂'); return; }
+      if (bgm.paused){
+        try{ await bgm.play(); musicBtn.textContent='🔊 Music: On'; musicBtn.setAttribute('aria-pressed','true'); }
+        catch(e){ alert('Tap “Open it” first, then try music!'); }
+      }else{
+        bgm.pause(); musicBtn.textContent='🔈 Music: Off'; musicBtn.setAttribute('aria-pressed','false');
+      }
+    });
+
+    // Accessibility: hint for "No"
+    const noDesc = 'This button may move to avoid being clicked 😄';
+    noBtn.setAttribute('aria-description', noDesc);
+    noBtn.setAttribute('title', noDesc);
+
+    // Initial ambiance
+    popHearts(20);
+  </script>
+</body>
+</html>
