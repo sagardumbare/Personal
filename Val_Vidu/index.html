@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Open at Your Own Risk</title>
+  <meta name="description" content="A playful, dramatic gate page with reveal." />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #111827;
+      --text: #e5e7eb;
+      --accent: #ef4444; /* red */
+      --accent-2: #22c55e; /* green */
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 1200px at 50% -10%, #1f2937 0%, var(--bg) 45%, #000 100%);
+      display: grid; place-items: center;
+    }
+    .wrap {
+      width: min(92vw, 720px);
+      background: linear-gradient(180deg, #0f172a 0%, #0b0f14 100%);
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .glow {
+      position: absolute; inset: -20%; filter: blur(40px);
+      background: conic-gradient(from 180deg, #ef444422, #22c55e22, #3b82f622, #ef444422);
+      animation: spin 10s linear infinite;
+      z-index: 0;
+    }
+    @keyframes spin { to { transform: rotate(1turn) } }
+
+    .content { position: relative; z-index: 1; text-align: center; }
+    h1 {
+      margin: 10px 0 0;
+      font-size: clamp(28px, 4.5vw, 40px);
+      letter-spacing: .4px;
+    }
+    p.muted { color: #9ca3af; margin: 8px 0 24px; }
+    .warning {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 10px;
+      background: #ef44440f; color: #fecaca; border: 1px solid #7f1d1d;
+      font-weight: 600; text-transform: uppercase; letter-spacing: .4px;
+    }
+    .cta {
+      margin-top: 22px;
+      display: inline-grid; place-items: center;
+      padding: 16px 22px; font-size: 18px; font-weight: 700;
+      border-radius: 12px; border: 1px solid #334155;
+      background: linear-gradient(180deg, #16a34a, #15803d);
+      color: white; cursor: pointer; text-decoration: none;
+      transition: transform .08s ease, filter .2s ease, box-shadow .2s ease;
+      box-shadow: 0 10px 30px rgba(34,197,94,.25);
+    }
+    .cta:hover { filter: brightness(1.05) }
+    .cta:active { transform: translateY(1px) }
+    .cta.shake { animation: shake .4s }
+    @keyframes shake {
+      15% { transform: translateX(-3px) }
+      35% { transform: translateX(4px) }
+      55% { transform: translateX(-4px) }
+      75% { transform: translateX(2px) }
+      100% { transform: translateX(0) }
+    }
+
+    .reveal {
+      margin-top: 22px; padding: 16px; border-radius: 12px;
+      background: #0b1220; border: 1px solid #1f2a44;
+      display: none; text-align: left;
+    }
+    .reveal.visible { display: block; }
+    .footer {
+      margin-top: 18px; font-size: 12px; color: #6b7280;
+    }
+    .timer { font-weight: 700; color: #eab308 }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="content">
+      <div class="warning">⚠️ Open at your own risk</div>
+      <h1>Proceed if you dare</h1>
+      <p class="muted">This page may contain loud sounds, flashing effects, or surprises. Viewer discretion advised.</p>
+
+      <button id="openBtn" class="cta">I Understand—Open It</button>
+
+      <div id="reveal" class="reveal" role="region" aria-live="polite">
+        <h2>Surprise! 🎉</h2>
+        <p>You made it past the gate. Replace this section with your actual content, embed, or redirect.</p>
+        <ul>
+          <li>To **redirect** instead of showing this box, set <code>REDIRECT_URL</code> below.</li>
+          <li>To enable a **countdown**, set <code>COUNTDOWN_SECONDS</code>.</li>
+          <li>To add **confetti**, toggle <code>CONFETTI</code> to true.</li>
+        </ul>
+      </div>
+
+      <div class="footer">© <span id="y"></span> Your Name — Be nice. No malicious content.</div>
+    </div>
+  </div>
+
+  <audio id="beep" preload="auto">
+    <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQgAAAAA" type="audio/wav">
+  </audio>
+
+  <script>
+    // --- Configuration ---
+    const COUNTDOWN_SECONDS = 0;          // e.g., 3 for a 3-second suspense
+    const REDIRECT_URL = "";              // e.g., "https://example.com/final"
+    const CONFETTI = true;                // toggle confetti effect
+
+    // --- Helpers ---
+    const byId = (id) => document.getElementById(id);
+    const openBtn = byId('openBtn');
+    const reveal = byId('reveal');
+    const beep = byId('beep');
+    byId('y').textContent = new Date().getFullYear();
+
+    function simpleConfetti() {
+      // Lightweight confetti without external libs
+      const total = 120;
+      for (let i = 0; i < total; i++) {
+        const el = document.createElement('i');
+        const size = Math.random() * 8 + 4;
+        const colors = ['#ef4444','#22c55e','#3b82f6','#eab308','#a855f7','#f97316'];
+        el.style.position = 'fixed';
+        el.style.left = (Math.random() * 100) + 'vw';
+        el.style.top = '-10px';
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+        el.style.background = colors[Math.floor(Math.random()*colors.length)];
+        el.style.opacity = .9;
+        el.style.transform = `rotate(${Math.random()*360}deg)`;
+        el.style.willChange = 'transform, top';
+        el.style.zIndex = 9999;
+        document.body.appendChild(el);
+        const fall = () => {
+          const duration = 2000 + Math.random() * 2000;
+          const dx = (Math.random() * 2 - 1) * 200;
+          el.animate([
+            { transform: `translate(0,0) rotate(0deg)` , offset: 0 },
+            { transform: `translate(${dx/2}px, 50vh) rotate(180deg)`, offset: .5 },
+            { transform: `translate(${dx}px, 100vh) rotate(360deg)` , offset: 1 }
+          ], { duration, easing: 'cubic-bezier(.2,.8,.2,1)' });
+          setTimeout(() => el.remove(), duration);
+        };
+        setTimeout(fall, Math.random() * 300);
+      }
+    }
+
+    function countdown(sec) {
+      return new Promise((resolve) => {
+        if (!sec) return resolve();
+        const span = document.createElement('span');
+        span.className = 'timer';
+        span.textContent = `Revealing in ${sec}…`;
+        openBtn.insertAdjacentElement('afterend', span);
+        const int = setInterval(() => {
+          sec--;
+          span.textContent = `Revealing in ${sec}…`;
+          if (sec <= 0) {
+            clearInterval(int);
+            span.remove();
+            resolve();
+          }
+        }, 1000);
+      });
+    }
+
+    openBtn.addEventListener('click', async () => {
+      // Haptic + beep + shake
+      openBtn.classList.add('shake');
+      try { navigator.vibrate && navigator.vibrate(40); } catch {}
+      try { beep.currentTime = 0; beep.play().catch(()=>{}); } catch {}
+
+      await countdown(COUNTDOWN_SECONDS);
+
+      if (REDIRECT_URL) {
+        window.location.href = REDIRECT_URL;
+        return;
+      }
+
+      reveal.classList.add('visible');
+      if (CONFETTI) simpleConfetti();
+    });
+  </script>
+</body>
+</html>
